@@ -16,7 +16,7 @@
 			</div>
 			<button type="button" @click="calculate">Calculate</button>
 		</form>
-		<div>Result is: {{ result }} грн</div>
+		<p class="result"><strong>Result is: {{ result }} грн</strong></p>
 	</div>
 </template>
 <script>
@@ -48,12 +48,22 @@ export default {
 		}
 	},
 	created() {
-		fetch("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json")
+		//This is by a Vanilla JS
+
+		// fetch("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json")
+		// 	.then( res => res.json() )
+		// 	.then ( data => {
+		// 		data.forEach(elem => this.currenciesList.push(elem))
+		// 	})
+		// 	.catch( error => alert(`Упс! ${error}`));
+
+		//This is by vue-resource
+		this.$http.get("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json")
 			.then( res => res.json() )
 			.then ( data => {
 				data.forEach(elem => this.currenciesList.push(elem))
-			});
-		console.log(this.currenciesList);
+			})
+			.catch( error => alert(`Упс! ${error}`));
 	}
 }
 </script>
@@ -65,18 +75,16 @@ export default {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
+	font-size: 16px;
 	color: #2c3e50;
 }
-// #nav {
-// 	padding: 30px;
-// 	a {
-// 		font-weight: bold;
-// 		color: #2c3e50;
-// 		&.router-link-exact-active {
-// 		color: #42b983;
-// 		}
-// 	}
-// }
+h1 {
+	color: #293d3d;
+}
+
+.result {
+	font-size: 20px;
+}
 form {
 	display: flex;
 	flex-direction: column;
@@ -85,8 +93,23 @@ form {
 }
 
 .form-block {
-	border: 1px solid black;
+	border-left: 2px solid #293d3d;
+	border-right: 2px solid #293d3d;
 	width: 50%;
+	padding: 15px;
+}
+input, select {
+	padding: 10px;
+	border: 2px solid #293d3d;
+}
+button {
+	background-color: #293d3d;
+	color: white;
+	font-size: 20px;
+	border: none;
+	padding: 10px 25px;
+	border-radius: 5px;
+	margin: 10px;
 }
 </style>
 
