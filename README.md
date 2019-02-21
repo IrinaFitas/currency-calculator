@@ -1,4 +1,4 @@
-# current-calculator-on-vue
+# currency-calculator-on-vue
 
 ## Project setup
 ```
