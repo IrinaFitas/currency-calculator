@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<h1>Current calculator</h1>
+		<h1>Currency calculator</h1>
 		<form action="" method="POST">
 			<div class="form-block">
 				<label><input type="radio" value="to_buy" v-model="operation">Buy</label>
@@ -48,7 +48,7 @@ export default {
 		}
 	},
 	created() {
-		//This is by a Vanilla JS
+		//This is by Vanilla JS
 
 		// fetch("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json")
 		// 	.then( res => res.json() )
